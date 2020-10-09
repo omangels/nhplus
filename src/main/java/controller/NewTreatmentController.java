@@ -61,7 +61,7 @@ public class NewTreatmentController {
         controller.readAllAndShowInTableView();
         stage.close();
     }
-
+    //test
     private void createTreatment(Treatment treatment) {
         TreatmentDAO dao = DAOFactory.getDAOFactory().createTreatmentDAO();
         try {
