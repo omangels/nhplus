@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.Caregiver;
 import model.Patient;
 import model.Treatment;
 import datastorage.DAOFactory;
@@ -147,7 +148,8 @@ public class AllTreatmentController {
         try{
             String p = this.comboBox.getSelectionModel().getSelectedItem();
             Patient patient = searchInList(p);
-            newTreatmentWindow(patient);
+            Caregiver caregiver = new Caregiver (1, "Tester", "Testmann", 0155);
+            newTreatmentWindow(patient, caregiver);
         }
         catch(NullPointerException e){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -165,7 +167,7 @@ public class AllTreatmentController {
         treatmentWindow(treatment);
     }
 
-    public void newTreatmentWindow(Patient patient){
+    public void newTreatmentWindow(Patient patient, Caregiver caregiver){
         try {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("/NewTreatmentView.fxml"));
             AnchorPane pane = loader.load();
@@ -173,8 +175,9 @@ public class AllTreatmentController {
             //da die primaryStage noch im Hintergrund bleiben soll
             Stage stage = new Stage();
 
+
             NewTreatmentController controller = loader.getController();
-            controller.initialize(this, stage, patient);
+            controller.initialize(this, stage, patient, caregiver);
 
             stage.setScene(scene);
             stage.setResizable(false);

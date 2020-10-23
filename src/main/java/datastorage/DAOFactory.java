@@ -22,4 +22,7 @@ public class DAOFactory {
     public PatientDAO createPatientDAO() {
         return new PatientDAO(ConnectionBuilder.getConnection());
     }
+
+    public CaregiverDAO createCaregiverDAO() { return new CaregiverDAO(ConnectionBuilder.getConnection());
+    }
 }

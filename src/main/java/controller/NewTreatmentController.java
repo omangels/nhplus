@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Caregiver;
 import model.Patient;
 import model.Treatment;
 import utils.DateConverter;
@@ -34,11 +35,13 @@ public class NewTreatmentController {
     private AllTreatmentController controller;
     private Patient patient;
     private Stage stage;
+    private Caregiver caregiver;
 
-    public void initialize(AllTreatmentController controller, Stage stage, Patient patient) {
+    public void initialize(AllTreatmentController controller, Stage stage, Patient patient, Caregiver caregiver) {
         this.controller= controller;
         this.patient = patient;
         this.stage = stage;
+        this.caregiver = caregiver;
         showPatientData();
     }
 
