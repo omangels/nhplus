@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
- * Implements the Interface <code>DAOImp</code>. Overrides methods to generate specific patient-SQL-queries.
+ * Implements the Interface <code>DAOImp</code>. Overrides methods to generate specific caregiver-SQL-queries.
  */
 public class CaregiverDAO extends DAOimp<Caregiver> {
 
@@ -27,14 +27,14 @@ public class CaregiverDAO extends DAOimp<Caregiver> {
     }*/
 
     /**
-     * generates a <code>INSERT INTO</code>-Statement for a given patient
+     * generates a <code>INSERT INTO</code>-Statement for a given caregiver
      * @param caregiver for which a specific INSERT INTO is to be created
      * @return <code>String</code> with the generated SQL.
      */
     @Override
     protected String getCreateStatementString(Caregiver caregiver) {
         return String.format("INSERT INTO caregiver (id, firstname, surname, telephone) VALUES ('%d', '%s', '%s', '%d')",
-                caregiver.getCID(), caregiver.getFirstName(), caregiver.getSurname(), caregiver.getTelephone());
+                caregiver.getCid(), caregiver.getFirstName(), caregiver.getSurname(), caregiver.getTelephone());
 
     }
 
@@ -49,21 +49,20 @@ public class CaregiverDAO extends DAOimp<Caregiver> {
     }
 
     /**
-     * maps a <code>ResultSet</code> to a <code>Patient</code>
+     * maps a <code>ResultSet</code> to a <code>Caregiver</code>
      * @param result ResultSet with a single row. Columns will be mapped to a patient-object.
-     * @return patient with the data from the resultSet.
+     * @return caregiver with the data from the resultSet.
      */
     @Override
     protected Caregiver getInstanceFromResultSet(ResultSet result) throws SQLException {
         Caregiver c = null;
-        LocalDate date = DateConverter.convertStringToLocalDate(result.getString(4));
         c = new Caregiver(result.getInt(1), result.getString(2),
                 result.getString(3),result.getInt(4));
         return c;
     }
 
     /**
-     * generates a <code>SELECT</code>-Statement for all patients.
+     * generates a <code>SELECT</code>-Statement for all caregiver.
      * @return <code>String</code> with the generated SQL.
      */
     @Override
@@ -100,7 +99,7 @@ public class CaregiverDAO extends DAOimp<Caregiver> {
 
     protected String getUpdateStatementString(Caregiver caregiver) {
         return String.format("UPDATE caregiver SET firstname = '%s', surname = '%s', telephone = '%d'" +
-                        "WHERE cid = %d", caregiver.getFirstName(), caregiver.getSurname(), caregiver.getTelephone());
+                        "WHERE cid = %d", caregiver.getFirstName(), caregiver.getSurname(), caregiver.getTelephone(), caregiver.getCid());
     }
 
     /**

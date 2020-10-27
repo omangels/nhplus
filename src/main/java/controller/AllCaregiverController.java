@@ -1,7 +1,6 @@
 package controller;
 
 import datastorage.PatientDAO;
-import datastorage.TreatmentDAO;
 import datastorage.CaregiverDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,11 +9,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import model.Caregiver;
-import model.Patient;
-import utils.DateConverter;
 import datastorage.DAOFactory;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.List;
 
 
@@ -55,8 +51,8 @@ public class AllCaregiverController {
     public void initialize() {
         readAllAndShowInTableView();
         System.out.println("Test-Name:" + tableviewContent.get(0).getFirstname());
-        System.out.println("Test-CID:" + tableviewContent.get(0).getCID());
-       this.colID.setCellValueFactory(new PropertyValueFactory<Caregiver, Integer>("cid")); // Ab hier macht der Fehler. Keine Ahnung, was das Problem ist.
+        System.out.println("Test-CID:" + tableviewContent.get(0).getCid());
+        this.colID.setCellValueFactory(new PropertyValueFactory<Caregiver, Integer>("cid")); // Ab hier macht der Fehler. Keine Ahnung, was das Problem ist.
 
         //CellValuefactory zum Anzeigen der Daten in der TableView
         this.colFirstName.setCellValueFactory(new PropertyValueFactory<Caregiver, String>("firstName"));
@@ -66,9 +62,8 @@ public class AllCaregiverController {
         this.colSurname.setCellValueFactory(new PropertyValueFactory<Caregiver, String>("surname"));
         this.colSurname.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        this.colSurname.setCellValueFactory(new PropertyValueFactory<Caregiver, String>("telephone"));
-        this.colSurname.setCellFactory(TextFieldTableCell.forTableColumn());
-        
+        this.colTelephone.setCellValueFactory(new PropertyValueFactory<Caregiver, Integer>("telephone"));
+
         //Anzeigen der Daten
         this.tableView.setItems(this.tableviewContent);
     }
@@ -128,8 +123,8 @@ public class AllCaregiverController {
         Caregiver selectedItem = this.tableView.getSelectionModel().getSelectedItem();
         this.tableView.getItems().remove(selectedItem);
         try {
-            dao.deleteById((int) selectedItem.getCID());
-            cDao.deleteById((int) selectedItem.getCID());
+            dao.deleteById((int) selectedItem.getCid());
+            cDao.deleteById((int) selectedItem.getCid());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -141,19 +136,23 @@ public class AllCaregiverController {
      */
     @FXML
     public void handleAdd() {
+        System.out.println("BREAK A");
         int id = Integer.getInteger(this.txtCID.getText());
         String surname = this.txtSurname.getText();
         String firstname = this.txtFirstname.getText();
         int telephone = Integer.getInteger(this.txtTelephone.getText());
+        System.out.println("BREAK B");
         try {
             /* Das hier ist erstmal nur ein Platzhalter um die ganzen Fehler zu beheben.*/
-            Caregiver c = new Caregiver(7, "Guenther", "Kickass", 911);
+            Caregiver c = new Caregiver(id, firstname, surname, telephone);
             dao.create(c);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println("BREAK X");
         readAllAndShowInTableView();
         clearTextfields();
+
     }
 
     /**
