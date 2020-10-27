@@ -34,7 +34,7 @@ public class CaregiverDAO extends DAOimp<Caregiver> {
     @Override
     protected String getCreateStatementString(Caregiver caregiver) {
         return String.format("INSERT INTO caregiver (id, firstname, surname, telephone) VALUES ('%d', '%s', '%s', '%d')",
-                caregiver.getCID(), caregiver.getFirstName(), caregiver.getSurname(), caregiver.getTelephone());
+                caregiver.getCid(), caregiver.getFirstName(), caregiver.getSurname(), caregiver.getTelephone());
 
     }
 
@@ -100,7 +100,7 @@ public class CaregiverDAO extends DAOimp<Caregiver> {
 
     protected String getUpdateStatementString(Caregiver caregiver) {
         return String.format("UPDATE caregiver SET firstname = '%s', surname = '%s', telephone = '%d'" +
-                        "WHERE cid = %d", caregiver.getFirstName(), caregiver.getSurname(), caregiver.getTelephone());
+                        "WHERE cid = %d", caregiver.getFirstName(), caregiver.getSurname(), caregiver.getTelephone(), caregiver.getCid());
     }
 
     /**

@@ -28,6 +28,8 @@ public class AllTreatmentController {
     @FXML
     private TableColumn<Treatment, Integer> colPid;
     @FXML
+    private TableColumn<Treatment, Integer> colCid;
+    @FXML
     private TableColumn<Treatment, String> colDate;
     @FXML
     private TableColumn<Treatment, String> colBegin;

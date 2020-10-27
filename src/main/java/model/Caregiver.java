@@ -32,8 +32,8 @@ public class Caregiver extends Person {
         this.telephone = telephone;
     }
 
-    public long getCID() {
-        return this.cid;
+    public long getCid() {
+        return cid;
     }
     public String getFirstname() {
       return firstName;
@@ -46,7 +46,7 @@ public class Caregiver extends Person {
     }
     
     
-    public void setCID(int id) {
+    public void setCid(int id) {
       this.cid = id;
   }
     public void setFirstname(String firstname) {
