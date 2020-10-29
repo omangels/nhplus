@@ -1,8 +1,5 @@
 package model;
 
-import utils.DateConverter;
-
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,19 +11,24 @@ public class Caregiver extends Person {
     private int cid;
     private String firstName;
     private String surname;
-    private int telephone;
+    private String telephone;
     private List<Caregiver> allCaregiver = new ArrayList<Caregiver>();
 
     /**
-     * constructs a caregiver from the given params.
-     * @param cid
+     * constructs a caregiver from the given params
      * @param firstName
      * @param surname
      * @param telephone
      */
-    public Caregiver (int cid, String firstName, String surname, int telephone) {
+    public Caregiver (String firstName, String surname, String telephone) {
         super(firstName, surname);
-        this.cid = cid;
+        this.firstName = firstName;
+        this.surname = surname;
+        this.telephone = telephone;
+    }
+    public Caregiver (int Cid, String firstName, String surname, String telephone) {
+        super(firstName, surname);
+        this.cid = Cid;
         this.firstName = firstName;
         this.surname = surname;
         this.telephone = telephone;
@@ -41,9 +43,7 @@ public class Caregiver extends Person {
     public String getSurname() {
       return surname;
     }
-    public long getTelephone() {
-      return telephone;
-    }
+    public String getTelephone() { return telephone;}
     
     
     public void setCid(int id) {
@@ -55,7 +55,7 @@ public class Caregiver extends Person {
     public void setLastname(String surname) {
       this.surname = surname;
   }
-    public void setTelephone(int telephone) {
+    public void setTelephone(String telephone) {
       this.telephone = telephone;
   }
 

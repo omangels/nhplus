@@ -34,13 +34,11 @@ public class AllCaregiverController {
     @FXML
     Button btnAdd;
     @FXML
-    TextField txtCID;
+    TextField txfFirstName;
     @FXML
-    TextField txtFirstname;
+    TextField txfSurname;
     @FXML
-    TextField txtSurname;
-    @FXML
-    TextField txtTelephone;
+    TextField txfTelephone;
 
     private ObservableList<Caregiver> tableviewContent = FXCollections.observableArrayList();
     private CaregiverDAO dao;
@@ -50,8 +48,6 @@ public class AllCaregiverController {
      */
     public void initialize() {
         readAllAndShowInTableView();
-        System.out.println("Test-Name:" + tableviewContent.get(0).getFirstname());
-        System.out.println("Test-CID:" + tableviewContent.get(0).getCid());
         this.colID.setCellValueFactory(new PropertyValueFactory<Caregiver, Integer>("cid")); // Ab hier macht der Fehler. Keine Ahnung, was das Problem ist.
 
         //CellValuefactory zum Anzeigen der Daten in der TableView
@@ -106,7 +102,6 @@ public class AllCaregiverController {
         try {
             allCaregiver = dao.readAll();
             for (Caregiver c : allCaregiver) {
-                System.out.println(c.getFirstname());
                 this.tableviewContent.add(c);
             }
         } catch (SQLException e) {
@@ -121,6 +116,7 @@ public class AllCaregiverController {
     public void handleDeleteRow() {
         CaregiverDAO cDao = DAOFactory.getDAOFactory().createCaregiverDAO();
         Caregiver selectedItem = this.tableView.getSelectionModel().getSelectedItem();
+        System.out.println("Selected Item: " + selectedItem.getFirstname());
         this.tableView.getItems().remove(selectedItem);
         try {
             dao.deleteById((int) selectedItem.getCid());
@@ -128,28 +124,23 @@ public class AllCaregiverController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        this.handleAdd();
+       // this.handleAdd();
     }
 
     /**
-     * handles a add-click-event. Creates a patient and calls the create method in the {@link PatientDAO}
+     * handles a add-click-event. Creates a caregiver and calls the create method in the {@link CaregiverDAO}
      */
     @FXML
     public void handleAdd() {
-        System.out.println("BREAK A");
-        int id = Integer.getInteger(this.txtCID.getText());
-        String surname = this.txtSurname.getText();
-        String firstname = this.txtFirstname.getText();
-        int telephone = Integer.getInteger(this.txtTelephone.getText());
-        System.out.println("BREAK B");
+        String surname = this.txfSurname.getText();
+        String firstname = this.txfFirstName.getText();
+        String telephone = this.txfTelephone.getText();
         try {
-            /* Das hier ist erstmal nur ein Platzhalter um die ganzen Fehler zu beheben.*/
-            Caregiver c = new Caregiver(id, firstname, surname, telephone);
+            Caregiver c = new Caregiver(firstname, surname, telephone);
             dao.create(c);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("BREAK X");
         readAllAndShowInTableView();
         clearTextfields();
 
@@ -159,9 +150,8 @@ public class AllCaregiverController {
      * removes codflkfntent from all textfields
      */
     private void clearTextfields() {
-        this.txtCID.clear();
-        this.txtFirstname.clear();
-        this.txtSurname.clear();
-        this.txtTelephone.clear();
+        this.txfFirstName.clear();
+        this.txfSurname.clear();
+        this.txfTelephone.clear();
     }
 }
