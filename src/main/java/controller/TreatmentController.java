@@ -18,7 +18,10 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * The <code>TreatmentController</code> contains the entire logic for the handling of treatments. It determines which data is
+ * displayed and how to react to events.
+ */
 public class TreatmentController {
     @FXML
     private Label lblPatientName;

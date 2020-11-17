@@ -34,28 +34,62 @@ public class User extends Person {
     }
 
 
-
+    /**
+     *
+     * @return uid
+     */
     public long getUid() {
         return this.uid;
     }
+    /**
+     *
+     * @return firstname
+     */
     public String getFirstname() {
       return firstName;
     }
+    /**
+     *
+     * @return surname
+     */
     public String getSurname() {
       return surname;
     }
+    /**
+     *
+     * @return password
+     */
     public String getPassword() { return password;}
-    
-    
+
+    /**
+     *
+     * @param id
+     *                    new id
+     */
     public void setUid(int id) {
       this.uid = id;
   }
+    /**
+     *
+     * @param firstname
+     *                    new first name
+     */
     public void setFirstname(String firstname) {
       this.firstName = firstname;
   }
+    /**
+     *
+     * @param surname
+     *                    new surname
+     */
     public void setLastname(String surname) {
       this.surname = surname;
   }
+    /**
+     *
+     * @param password
+     *                    new password
+     */
     public void setPassword(String password) {
       this.password = password;
   }

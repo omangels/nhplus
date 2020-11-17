@@ -16,6 +16,7 @@ public class MainWindowController {
 
     /**
      * handles the displaying of the patients
+     *
      */
     @FXML
     private void handleShowAllPatient(ActionEvent e) {
@@ -30,6 +31,7 @@ public class MainWindowController {
 
     /**
      * handles the displaying of the treatments
+     *
      */
     @FXML
     private void handleShowAllTreatments(ActionEvent e) {

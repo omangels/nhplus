@@ -14,7 +14,9 @@ import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 import java.util.Optional;
-
+/**
+ * The <code>Main class</code> is responsible for loading the main window.
+ */
 public class Main extends Application {
 
     private Stage primaryStage;

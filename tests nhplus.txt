@@ -1,0 +1,70 @@
+Tests Vermögensstand:
+
+Test: Anzeigen von Patientendaten
+Erwartetes Ergebnis: Vermögensstand wird nicht angezeigt
+Tatsächliches Ergebnis: Vermögensstand wird nicht angezeigt
+
+Test: Anlegen eines Patienten ohne Vermögensstand
+Erwartetes Ergebnis: Anlegen gelingt problemlos
+Tatsächliches Ergebnis: Anlegen gelingt problemlos
+
+--------------------------------------
+
+Tests Login:
+
+Test: Anmelden
+Erwartetes Ergebnis: Anmeldung gelingt und es kann auf die Anwendung zugegriffen werden
+Tatsächliches Ergebnis: Anmeldung gelingt und es kann auf die Anwendung zugegriffen werden
+
+Test: Eingeben eines falschen Passworts
+Erwartetes Ergebnis: Hinweis, dass das Passwort falsch ist und leeren des Passwortfeldes
+Tatsächliches Ergebnis: Hinweis, dass das Passwort falsch ist und leeren des Passwortfeldes
+
+Test: Anmelden mit nicht vorhandener User-ID
+Erwartetes Ergebnis: Hinweis, dass die User-ID nicht existiert und beide Felder werden geleert
+Tatsächliches Ergebnis: Hinweis, dass die User-ID nicht existiert und beide Felder werden geleert
+
+--------------------------------------
+
+Tests Behandlungen
+
+Test: Hinzufügen eines Pflegers zu einer bestehenden Behandlung
+Erwartetes Ergebnis: Ein Pfleger kann zu einer bestehenden Behandlung via Combobox hinzugefügt werden. 
+Tatsächliches Ergebnis: Es wurde der Behandlung mit der ID 27 der Pfleger mit der ID 3 hinzugefügt.
+
+Test: Hinzufügen eines Pflegers zu einer neuen Behandlung
+Erwartetes Ergebnis: Ein Pfleger kann zu einer neuen Behandlung via Combobox hinzugefügt werden.
+Tatsächliches Ergebnis: Es wurde eine neue Behandlung mit der ID 35 der Pfleger mit der ID 2 hinzugefügt.
+
+Test: Zusätzliche Anzeige zum Pfleger
+Erwartetes Ergebnis: Es sollen die Daten des Pflegers zu einer Behandlung angezeigt werden.
+Tatsächliches Ergebnis: Die Daten des Pflegers werden angezeigt.
+
+--------------------------------------
+
+Tests Pfleger
+
+Test: Anlegen eines Pflegers
+Erwartes Ergebnis: Bei 3 bestehenden Pflegern kann ein neuer Pfleger angelegt werden, dem automatisch die ID 4 zugewiesen wird.
+Tatsächliches Ergebnis: Da schon dutzende Pfleger erstellt worden sind, bekommt der neue Pfleger die ID 28. Ansonsten ist der Test erfolgreich, da der Pfleger in sämtlichen Comboboxen auftaucht.
+
+Test: Löschen eines Pflegers
+Erwartes Ergebnis: Der neu erstelle Pfleger lässt sich löschen.
+Tatsächliches Ergebnis: Der neu erstellte Pfleger ließ sich löschen.
+
+
+
+--------------------------------------
+
+Tests Datenschutz
+
+
+Test: Löschung alter Daten
+Erwartes Ergebnis: Eine Behandlung mit dem Datum 2010-05-05 soll bei Aufruf der Behandlungen automatisch als veraltet erkannt werden.
+Tatsächliches Ergebnis: Die Behandlung wurde erfolgreich automatisch vom System gelöscht.
+
+
+Test: Sperren von Daten
+Erwartes Ergebnis: Ein Datensatz, der im Behandlungsfenster gesperrt wurde, bleibt in der Datenbank noch erhalten, wird jedoch nicht mehr angezeigt.
+Tatsächliches Ergebnis: Ein Datensatz, der im Behandlungsfenster gesperrt wurde, bleibt in der Datenbank noch erhalten, wird jedoch nicht mehr angezeigt.
+

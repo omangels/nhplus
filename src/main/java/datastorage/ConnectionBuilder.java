@@ -3,10 +3,15 @@ package datastorage;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+/**
+ * The SQL Connection builder for SQL connections.
+ */
 public class ConnectionBuilder {
     private static Connection conn;
 
+    /**
+     * Here is where the sql connection magic happens.
+     */
     private ConnectionBuilder() {
         try {
             Class.forName("org.hsqldb.jdbc.JDBCDriver");
@@ -21,14 +26,18 @@ public class ConnectionBuilder {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Opens the connection.
+     */
     public static Connection getConnection() {
         if (conn == null) {
             new ConnectionBuilder();
         }
         return conn;
     }
-
+    /**
+     * Closes the connection.
+     */
     public static void closeConnection() {
         try {
             conn.close();

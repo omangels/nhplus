@@ -32,6 +32,7 @@ public class LoginController {
 
     /**
      * handles the login of users
+     * @key e
      */
     @FXML
     private void handleLogin(ActionEvent e) {

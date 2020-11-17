@@ -119,11 +119,10 @@ public class NewTreatmentController {
     }
 
     /**
-     * handles canceling of adding of a new treatment
+     * handles cancelling of adding of a new treatment
      */
     @FXML
     public void handleCancel(){
-        System.out.println(caregiver.getSurname());
         stage.close();
     }
 
@@ -135,8 +134,7 @@ public class NewTreatmentController {
         try {
             caregiverList = (ArrayList<Caregiver>) dao.readAll();
             for (Caregiver caregiver: caregiverList) {
-                System.out.println(caregiver.getFirstname());
-                this.myComboBoxData.add(caregiver.getSurname()); //Oder vielleicht doch nur die ID? Was sagt das Datenschutzgesetz?
+                this.myComboBoxData.add(caregiver.getSurname());
             }
         }catch(SQLException e){
             e.printStackTrace();

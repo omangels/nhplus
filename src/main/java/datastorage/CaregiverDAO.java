@@ -25,9 +25,6 @@ public class CaregiverDAO extends DAOimp<Caregiver> {
         super(conn);
     }
 
-    /*protected String getCreateStatementString(Person person) {
-        return null;
-    }*/
 
     /**
      * generates a <code>INSERT INTO</code>-Statement for a given caregiver
@@ -53,7 +50,7 @@ public class CaregiverDAO extends DAOimp<Caregiver> {
 
     /**
      * maps a <code>ResultSet</code> to a <code>Caregiver</code>
-     * @param result ResultSet with a single row. Columns will be mapped to a patient-object.
+     * @param result ResultSet with a single row. Columns will be mapped to a caregiver-object.
      * @return caregiver with the data from the resultSet.
      */
     @Override
@@ -90,10 +87,6 @@ public class CaregiverDAO extends DAOimp<Caregiver> {
         return list;
     }
 
-    /*protected String getUpdateStatementString(Person person) {
-        return null;
-    }*/
-
     /**
      * generates a <code>UPDATE</code>-Statement for a given patient
      * @param caregiver for which a specific update is to be created
@@ -113,17 +106,5 @@ public class CaregiverDAO extends DAOimp<Caregiver> {
     @Override
     protected String getDeleteStatementString(int key) {
         return String.format("Delete FROM caregiver WHERE cid=%d", key);
-    }
-
-    public List<Caregiver> readCaregiverByCid(long cid) throws SQLException {
-        ArrayList<Caregiver> list = new ArrayList<>();
-        Caregiver object = null;
-        Statement st = conn.createStatement();
-        ResultSet result = st.executeQuery(getReadAllCaregiverOfOneCaregiverByCid(cid));
-        list = getListFromResultSet(result);
-        return list;
-    }
-    private String getReadAllCaregiverOfOneCaregiverByCid(long cid){
-        return String.format("SELECT * FROM caregiver WHERE cid = %d", cid);
     }
 }
