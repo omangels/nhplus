@@ -21,6 +21,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The <code>AllTreatmentController</code> contains the entire logic of the treatment view. It determines which data is
+ * displayed and how to react to events.
+ */
 public class AllTreatmentController {
     @FXML
     private TableView<Treatment> tableView;
@@ -54,6 +58,9 @@ public class AllTreatmentController {
     private Main main;
    // private Caregiver caregiver;
 
+    /**
+     * Initializes the corresponding fields. Is called as soon as the corresponding FXML file is to be displayed.
+     */
     public void initialize(){
 
         comboBox.setItems(myComboBoxData);
@@ -75,6 +82,9 @@ public class AllTreatmentController {
         }
     }
 
+    /**
+     * calls readAll in {@link TreatmentController} and shows treatments in the table
+     */
     public void readAllAndShowInTableView(){
         this.tableviewContent.clear();
         this.dao = DAOFactory.getDAOFactory().createTreatmentDAO();
@@ -89,6 +99,9 @@ public class AllTreatmentController {
         }
     }
 
+    /**
+     * adds patient surnames to a combo box
+     */
     private void createComboBoxData(){
         PatientDAO dao = DAOFactory.getDAOFactory().createPatientDAO();
         try {
@@ -102,11 +115,17 @@ public class AllTreatmentController {
         }
     }
 
-  private void expire() throws SQLException {
+    /**
+     * calls deleteByExpiration from {@link TreatmentDAO} to delete expired treatment data
+     */
+    private void expire() throws SQLException {
         TreatmentDAO dao = DAOFactory.getDAOFactory().createTreatmentDAO();
         dao.deleteByExpiration();
     }
 
+    /**
+     * handles a combo box
+     */
     @FXML
     public void handleComboBox(){
         String p = this.comboBox.getSelectionModel().getSelectedItem();
@@ -137,6 +156,11 @@ public class AllTreatmentController {
         }
     }
 
+    /**
+     * searches for a patient
+     * @param surname   surname of the patient
+     * @return  returns found patient
+     */
     private Patient searchInList(String surname){
         for (int i =0; i<this.patientList.size();i++){
             if(this.patientList.get(i).getSurname().equals(surname)){
@@ -146,6 +170,9 @@ public class AllTreatmentController {
         return null;
     }
 
+    /**
+     * handles deleting of a treatment
+     */
     @FXML
     public void handleDelete(){
         int index = this.tableView.getSelectionModel().getSelectedIndex();
@@ -158,6 +185,9 @@ public class AllTreatmentController {
         }
     }
 
+    /**
+     * handles new treatment
+     */
     @FXML
     public void handleNewTreatment() {
         try{
@@ -174,6 +204,9 @@ public class AllTreatmentController {
         }
     }
 
+    /**
+     * handles a mouse click
+     */
     @FXML
     public void handleMouseClick(){
         int index = this.tableView.getSelectionModel().getSelectedIndex();
@@ -181,6 +214,10 @@ public class AllTreatmentController {
         treatmentWindow(treatment);
     }
 
+    /**
+     * creates a window to handle a new treatment
+     * @param patient   patient object to be displayed
+     */
     public void newTreatmentWindow(Patient patient){
         try {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("/NewTreatmentView.fxml"));
@@ -197,11 +234,14 @@ public class AllTreatmentController {
             stage.setResizable(false);
             stage.showAndWait();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
 
+    /**
+     * creates a window to display a treatment
+     * @param treatment treatment to be displayed
+     */
     public void treatmentWindow(Treatment treatment){
         try {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("/TreatmentView.fxml"));
@@ -217,7 +257,6 @@ public class AllTreatmentController {
             stage.setResizable(false);
             stage.showAndWait();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

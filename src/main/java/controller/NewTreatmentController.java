@@ -19,6 +19,10 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The <code>NewTreatmentController</code> contains the entire logic for the adding of treatments. It determines which data is
+ * displayed and how to react to events.
+ */
 public class NewTreatmentController {
     public TextField txtPfleger;
     @FXML
@@ -50,6 +54,9 @@ public class NewTreatmentController {
     private Stage stage;
     private Caregiver caregiver;
 
+    /**
+     * Initializes the corresponding fields. Is called as soon as the corresponding FXML file is to be displayed.
+     */
     public void initialize(AllTreatmentController controller, Stage stage, Patient patient) {
         this.controller= controller;
         this.patient = patient;
@@ -60,11 +67,17 @@ public class NewTreatmentController {
         createComboBoxData();
     }
 
+    /**
+     * displays the names of the patients
+     */
     private void showPatientData(){
         this.lblFirstname.setText(patient.getFirstName());
         this.lblSurname.setText(patient.getSurname());
     }
 
+    /**
+     * handles the adding of treatments
+     */
     @FXML
     public void handleAdd(){
 
@@ -92,7 +105,10 @@ public class NewTreatmentController {
             stage.close();
         }
 
-    //test
+    /**
+     * adds a given treatment to the database
+     * @param treatment treatment that is supposed to be written into the database
+     */
     private void createTreatment(Treatment treatment) {
         TreatmentDAO dao = DAOFactory.getDAOFactory().createTreatmentDAO();
         try {
@@ -102,13 +118,18 @@ public class NewTreatmentController {
         }
     }
 
+    /**
+     * handles canceling of adding of a new treatment
+     */
     @FXML
     public void handleCancel(){
         System.out.println(caregiver.getSurname());
         stage.close();
     }
 
-
+    /**
+     * adds caregiver surnames to combo box
+     */
     private void createComboBoxData(){
         CaregiverDAO dao = DAOFactory.getDAOFactory().createCaregiverDAO();
         try {
@@ -122,7 +143,9 @@ public class NewTreatmentController {
         }
     }
 
-
+    /**
+     * handles the combo box
+     */
     @FXML
     public void handleComboBox(){
         String c = this.comboBox.getSelectionModel().getSelectedItem();
@@ -141,6 +164,12 @@ public class NewTreatmentController {
         }
         caregiver = searchInList(c);
     }
+
+    /**
+     * searches for a caregiver in a given list
+     * @param surname surname of the caregiver
+     * @return the found caregiver
+     */
     private Caregiver searchInList(String surname){
         for (int i =0; i<this.caregiverList.size();i++){
             if(this.caregiverList.get(i).getSurname().equals(surname)){

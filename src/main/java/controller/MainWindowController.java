@@ -6,11 +6,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
 import java.io.IOException;
 
+/**
+ * The <code>MainWindowController</code> contains the entire logic of the main view.
+ */
 public class MainWindowController {
 
     @FXML
     private BorderPane mainBorderPane;
 
+    /**
+     * handles the displaying of the patients
+     */
     @FXML
     private void handleShowAllPatient(ActionEvent e) {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/AllPatientView.fxml"));
@@ -22,6 +28,9 @@ public class MainWindowController {
         AllPatientController controller = loader.getController();
     }
 
+    /**
+     * handles the displaying of the treatments
+     */
     @FXML
     private void handleShowAllTreatments(ActionEvent e) {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/AllTreatmentView.fxml"));
@@ -32,6 +41,10 @@ public class MainWindowController {
         }
         AllTreatmentController controller = loader.getController();
     }
+
+    /**
+     * handles the displaying of the caregivers
+     */
     @FXML
     private void handleShowAllCaregiver(ActionEvent e) {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/AllCaregiverView.fxml"));
