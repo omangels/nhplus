@@ -14,6 +14,10 @@ import model.User;
 
 import javax.swing.*;
 
+/**
+ * The <code>LoginController</code> contains the entire logic of the login view.
+ * It determines how to react to events.
+ */
 public class LoginController {
 
     @FXML
@@ -26,6 +30,9 @@ public class LoginController {
     private UserDAO dao;
     private User user;
 
+    /**
+     * handles the login of users
+     */
     @FXML
     private void handleLogin(ActionEvent e) {
         this.dao = DAOFactory.getDAOFactory().createUserDAO();
@@ -38,13 +45,25 @@ public class LoginController {
             e1.printStackTrace();
         }
 
-        if(user.getPassword().equals(textPassword)){
-            showMainWindow();
-        } else {
-            JOptionPane.showMessageDialog(null, "Falsches Passwort");
+        String userName = user.getFirstname()+" "+user.getSurname();
+
+        try {
+            if (user.getPassword().equals(textPassword)) {
+                showMainWindow();
+                JOptionPane.showMessageDialog(null, "Willkommen zurück, "+userName+".");
+            } else {
+                txtPassword.clear();
+                JOptionPane.showMessageDialog(null, "Passwort oder Benurtzer-ID ist falsch");
+            }
+        } catch (NullPointerException e2) {
+            txtPassword.clear();
+            JOptionPane.showMessageDialog(null, "Benutzer-ID existiert nicht");
         }
     }
 
+    /**
+     * shows the main window
+     */
     @FXML
     private void showMainWindow() {
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("/MainWindowView.fxml"));

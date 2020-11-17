@@ -14,7 +14,7 @@ public class UserDAO extends DAOimp<User> {
 
     /**
      * constructs Object. Calls the Constructor from <code>DAOImp</code> to store the connection.
-     * @param conn
+     * @param conn  Database connection
      */
     public UserDAO(Connection conn) {
         super(conn);
@@ -44,15 +44,6 @@ public class UserDAO extends DAOimp<User> {
     @Override
     protected String getReadByIDStatementString(int key) {
         return String.format("SELECT * FROM user WHERE uid = %d", key);
-    }
-
-    /**
-     * generates a <code>select</code>-Statement for a password given a uid
-     * @param uid for which a specific SELECT is to be created
-     * @return <code>String</code> with the generated SQL.
-     */
-    public String getPasswordByID(int uid) {
-        return String.format("SELECT password FROM user WHERE uid = %d", uid);
     }
 
     /**
