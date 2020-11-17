@@ -1,5 +1,7 @@
 package datastorage;
 
+import model.Caregiver;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -66,4 +68,6 @@ public abstract class DAOimp<T> implements DAO<T>{
     protected abstract String getUpdateStatementString(T t);
 
     protected abstract String getDeleteStatementString(int key);
+
+
 }

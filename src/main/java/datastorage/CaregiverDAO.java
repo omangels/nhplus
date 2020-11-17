@@ -1,13 +1,16 @@
 package datastorage;
 
 import model.Caregiver;
+import model.Treatment;
 import utils.DateConverter;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Implements the Interface <code>DAOImp</code>. Overrides methods to generate specific caregiver-SQL-queries.
@@ -110,5 +113,17 @@ public class CaregiverDAO extends DAOimp<Caregiver> {
     @Override
     protected String getDeleteStatementString(int key) {
         return String.format("Delete FROM caregiver WHERE cid=%d", key);
+    }
+
+    public List<Caregiver> readCaregiverByCid(long cid) throws SQLException {
+        ArrayList<Caregiver> list = new ArrayList<>();
+        Caregiver object = null;
+        Statement st = conn.createStatement();
+        ResultSet result = st.executeQuery(getReadAllCaregiverOfOneCaregiverByCid(cid));
+        list = getListFromResultSet(result);
+        return list;
+    }
+    private String getReadAllCaregiverOfOneCaregiverByCid(long cid){
+        return String.format("SELECT * FROM caregiver WHERE cid = %d", cid);
     }
 }

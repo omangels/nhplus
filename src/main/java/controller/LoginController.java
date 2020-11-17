@@ -52,7 +52,7 @@ public class LoginController {
                 JOptionPane.showMessageDialog(null, "Willkommen zurück, "+userName+".");
             } else {
                 txtPassword.clear();
-                JOptionPane.showMessageDialog(null, "Passwort oder Benurtzer-ID ist falsch");
+                JOptionPane.showMessageDialog(null, "Passwort oder Benutzer-ID ist falsch");
             }
         } catch (NullPointerException e2) {
             intID.clear();
