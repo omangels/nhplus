@@ -27,7 +27,7 @@ public class Main extends Application {
 
     public void mainWindow() {
         try {
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/MainWindowView.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("/LoginView.fxml"));
             BorderPane pane = loader.load();
 
             Scene scene = new Scene(pane);
