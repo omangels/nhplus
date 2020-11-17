@@ -52,13 +52,13 @@ public class AllTreatmentController {
             FXCollections.observableArrayList();
     private ArrayList<Patient> patientList;
     private Main main;
+   // private Caregiver caregiver;
 
-    public void initialize() {
-        readAllAndShowInTableView();
+    public void initialize(){
+
         comboBox.setItems(myComboBoxData);
         comboBox.getSelectionModel().select(0);
         this.main = main;
-
         this.colID.setCellValueFactory(new PropertyValueFactory<Treatment, Integer>("tid"));
         this.colPid.setCellValueFactory(new PropertyValueFactory<Treatment, Integer>("pid"));
         this.colCid.setCellValueFactory(new PropertyValueFactory<Treatment, Integer>("cid"));
@@ -68,9 +68,14 @@ public class AllTreatmentController {
         this.colDescription.setCellValueFactory(new PropertyValueFactory<Treatment, String>("description"));
         this.tableView.setItems(this.tableviewContent);
         createComboBoxData();
+        try {
+            expire();
+        }
+        catch (Exception e){
+        }
     }
 
-    public void readAllAndShowInTableView() {
+    public void readAllAndShowInTableView(){
         this.tableviewContent.clear();
         this.dao = DAOFactory.getDAOFactory().createTreatmentDAO();
         List<Treatment> allTreatments;
@@ -79,7 +84,7 @@ public class AllTreatmentController {
             for (Treatment treatment : allTreatments) {
                 this.tableviewContent.add(treatment);
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -97,9 +102,15 @@ public class AllTreatmentController {
         }
     }
 
+  private void expire() throws SQLException {
+        TreatmentDAO dao = DAOFactory.getDAOFactory().createTreatmentDAO();
+        dao.deleteByExpiration();
+    }
+
     @FXML
     public void handleComboBox(){
         String p = this.comboBox.getSelectionModel().getSelectedItem();
+        System.out.println("P: " + p);
         this.tableviewContent.clear();
         this.dao = DAOFactory.getDAOFactory().createTreatmentDAO();
         List<Treatment> allTreatments;
@@ -152,8 +163,7 @@ public class AllTreatmentController {
         try{
             String p = this.comboBox.getSelectionModel().getSelectedItem();
             Patient patient = searchInList(p);
-            Caregiver caregiver = new Caregiver (1, "Tester", "Testmann", 0155);
-            newTreatmentWindow(patient, caregiver);
+            newTreatmentWindow(patient);
         }
         catch(NullPointerException e){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -171,7 +181,7 @@ public class AllTreatmentController {
         treatmentWindow(treatment);
     }
 
-    public void newTreatmentWindow(Patient patient, Caregiver caregiver){
+    public void newTreatmentWindow(Patient patient){
         try {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("/NewTreatmentView.fxml"));
             AnchorPane pane = loader.load();
@@ -181,7 +191,7 @@ public class AllTreatmentController {
 
 
             NewTreatmentController controller = loader.getController();
-            controller.initialize(this, stage, patient, caregiver);
+            controller.initialize(this, stage, patient);
 
             stage.setScene(scene);
             stage.setResizable(false);

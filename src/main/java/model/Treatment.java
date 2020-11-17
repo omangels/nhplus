@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Treatment {
+    private  int lock;
     private long tid;
     private long pid;
     private long cid;
@@ -14,10 +15,11 @@ public class Treatment {
     private String description;
     private String remarks;
 
-    public Treatment(long pid, long cid, LocalDate date, LocalTime begin,
+    public Treatment(long pid, long cid, int lock, LocalDate date, LocalTime begin,
                      LocalTime end, String description, String remarks) {
         this.pid = pid;
         this.cid = cid;
+        this.lock = lock;
         this.date = date;
         this.begin = begin;
         this.end = end;
@@ -25,9 +27,10 @@ public class Treatment {
         this.remarks = remarks;
     }
 
-    public Treatment(long tid, long pid, long cid, LocalDate date, LocalTime begin,
+    public Treatment(long tid, long pid, long cid, int lock, LocalDate date, LocalTime begin,
                      LocalTime end, String description, String remarks) {
         this.tid = tid;
+        this.lock = lock;
         this.pid = pid;
         this.cid = cid;
         this.date = date;
@@ -60,6 +63,10 @@ public class Treatment {
         return end.toString();
     }
 
+    public void setCid(int cid) {
+        this.cid = cid;
+    }
+
     public void setDate(String s_date) {
         LocalDate date = DateConverter.convertStringToLocalDate(s_date);
         this.date = date;
@@ -74,6 +81,12 @@ public class Treatment {
         LocalTime time = DateConverter.convertStringToLocalTime(end);
         this.end = time;
     }
+
+    public void setLock(int lock){
+        this.lock = lock;
+    }
+
+    public int getLock() { return lock;}
 
     public String getDescription() {
         return description;
