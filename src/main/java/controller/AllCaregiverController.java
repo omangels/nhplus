@@ -84,6 +84,9 @@ public class AllCaregiverController {
         doUpdate(event);
     }
 
+    /**
+     * call update in {@link CaregiverDAO} and edits a caregiver
+     */
     private void doUpdate(TableColumn.CellEditEvent<Caregiver, String> t) {
         try {
             dao.update(t.getRowValue());

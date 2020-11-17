@@ -52,6 +52,9 @@ public class TreatmentController {
     private ArrayList<Caregiver> caregiverList;
     private Caregiver caregiver;
 
+    /**
+     * Initializes the corresponding fields. Is called as soon as the corresponding FXML file is to be displayed.
+     */
     public void initializeController(AllTreatmentController controller, Stage stage, Treatment treatment) {
         createComboBoxData();
         System.out.println(myComboBoxData.get(0));
@@ -70,6 +73,9 @@ public class TreatmentController {
         }
     }
 
+    /**
+     * displaying of the data of a treatment
+     */
     private void showData(){
         this.lblPatientName.setText(patient.getSurname()+", "+patient.getFirstName());
         this.lblCarelevel.setText(patient.getCareLevel());
@@ -81,6 +87,9 @@ public class TreatmentController {
         this.taRemarks.setText(this.treatment.getRemarks());
     }
 
+    /**
+     * handles the change of a treatment
+     */
     @FXML
     public void handleChange(){
         this.treatment.setDate(this.datepicker.getValue().toString());
@@ -94,6 +103,9 @@ public class TreatmentController {
         stage.close();
     }
 
+    /**
+     * changes the treatment in the database
+     */
     private void doUpdate(){
         TreatmentDAO dao = DAOFactory.getDAOFactory().createTreatmentDAO();
         try {
@@ -102,6 +114,10 @@ public class TreatmentController {
             e.printStackTrace();
         }
     }
+
+    /**
+     * adds caregivers surnames to a combo box
+     */
     private void createComboBoxData(){
         CaregiverDAO dao = DAOFactory.getDAOFactory().createCaregiverDAO();
         try {
@@ -113,10 +129,18 @@ public class TreatmentController {
             e.printStackTrace();
         }
     }
+
+    /**
+     * handles the canceling of an action
+     */
     @FXML
     public void handleCancel(){
         stage.close();
     }
+
+    /**
+     * handles the combo box
+     */
     @FXML
     public void handleComboBox(){
         String c = this.comboBox.getSelectionModel().getSelectedItem();
@@ -135,6 +159,12 @@ public class TreatmentController {
         }
         caregiver = searchInList(c);
     }
+
+    /**
+     * searches for a caregiver in a certain list
+     * @param surname surname of the caregiver
+     * @return the found caregiver
+     */
     private Caregiver searchInList(String surname){
         for (int i =0; i<this.caregiverList.size();i++){
             if(this.caregiverList.get(i).getSurname().equals(surname)){
@@ -144,6 +174,9 @@ public class TreatmentController {
         return null;
     }
 
+    /**
+     * handles the locking of data
+     */
     @FXML
     public void handleLock(){
         this.treatment.setLock(1);
