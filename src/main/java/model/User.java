@@ -33,6 +33,8 @@ public class User extends Person {
         this.password = password;
     }
 
+
+
     public long getUid() {
         return this.uid;
     }

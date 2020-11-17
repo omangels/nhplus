@@ -4,6 +4,10 @@ import utils.DateConverter;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+
+/**
+ * Caregivers treat patients.
+ */
 public class Treatment {
     private  int lock;
     private long tid;

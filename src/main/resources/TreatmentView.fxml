@@ -44,6 +44,16 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
+             <Label text="Pfleger:" GridPane.rowIndex="1">
+                 <font>
+                     <Font name="System Bold" size="13.0" />
+                 </font>
+             </Label>
+             <Label text="Pfleger ändern:" GridPane.rowIndex="2">
+                 <font>
+                     <Font name="System Bold" size="11.0" />
+                 </font>
+             </Label>
             <Label text="Pflegestufe:" GridPane.columnIndex="2">
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -76,6 +86,9 @@
             <DatePicker fx:id="datepicker" prefWidth="192.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label fx:id="lblPatientName" text="Name" GridPane.columnIndex="1" />
             <Label fx:id="lblCarelevel" text="Pflegestufe" GridPane.columnIndex="3" />
+             <Label fx:id="lblCaregiverSurname" text="Pfleger Nachname" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+             <Label fx:id="lblCaregiverFirstname" text="Pfleger Vorname" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+             <Label fx:id="lblCaregiverTelephone" text="Telefonnummer" GridPane.columnIndex="3" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <HBox layoutX="298.0" layoutY="237.0" spacing="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="50.0">

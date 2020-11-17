@@ -33,6 +33,12 @@ public class TreatmentController {
     @FXML
     private TextArea taRemarks;
     @FXML
+    private Label lblCaregiverSurname;
+    @FXML
+    private Label lblCaregiverFirstname;
+    @FXML
+    private Label lblCaregiverTelephone;
+    @FXML
     private DatePicker datepicker;
     @FXML
     private Button btnChange;
@@ -44,25 +50,27 @@ public class TreatmentController {
     private Stage stage;
     private Patient patient;
     private Treatment treatment;
+    private Caregiver caregiver;
     private ObservableList<Caregiver> tableviewContent =
             FXCollections.observableArrayList();
     private CaregiverDAO dao;
     private ObservableList<String> myComboBoxData =
             FXCollections.observableArrayList();
     private ArrayList<Caregiver> caregiverList;
-    private Caregiver caregiver;
+
 
     public void initializeController(AllTreatmentController controller, Stage stage, Treatment treatment) {
         createComboBoxData();
-        System.out.println(myComboBoxData.get(0));
         comboBox.setItems(myComboBoxData);
         comboBox.getSelectionModel().select(0);
 
         this.stage = stage;
         this.controller= controller;
         PatientDAO pDao = DAOFactory.getDAOFactory().createPatientDAO();
+        CaregiverDAO cDao = DAOFactory.getDAOFactory().createCaregiverDAO();
         try {
             this.patient = pDao.read((int) treatment.getPid());
+            this.caregiver = cDao.read((int) treatment.getCid());
             this.treatment = treatment;
             showData();
         } catch (SQLException e) {
@@ -79,6 +87,9 @@ public class TreatmentController {
         this.txtEnd.setText(this.treatment.getEnd());
         this.txtDescription.setText(this.treatment.getDescription());
         this.taRemarks.setText(this.treatment.getRemarks());
+        this.lblCaregiverSurname.setText(this.caregiver.getSurname());
+        this.lblCaregiverFirstname.setText(this.caregiver.getFirstname());
+        this.lblCaregiverTelephone.setText(this.caregiver.getTelephone());
     }
 
     @FXML

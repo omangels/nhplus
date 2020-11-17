@@ -147,7 +147,7 @@ public class AllCaregiverController {
     }
 
     /**
-     * removes codflkfntent from all textfields
+     * removes content from all textfields
      */
     private void clearTextfields() {
         this.txfFirstName.clear();
