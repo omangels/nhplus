@@ -45,9 +45,8 @@ public class LoginController {
             e1.printStackTrace();
         }
 
-        String userName = user.getFirstname()+" "+user.getSurname();
-
         try {
+            String userName = user.getFirstname()+" "+user.getSurname();
             if (user.getPassword().equals(textPassword)) {
                 showMainWindow();
                 JOptionPane.showMessageDialog(null, "Willkommen zurück, "+userName+".");
@@ -56,6 +55,7 @@ public class LoginController {
                 JOptionPane.showMessageDialog(null, "Passwort oder Benurtzer-ID ist falsch");
             }
         } catch (NullPointerException e2) {
+            intID.clear();
             txtPassword.clear();
             JOptionPane.showMessageDialog(null, "Benutzer-ID existiert nicht");
         }
